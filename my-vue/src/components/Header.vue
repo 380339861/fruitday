@@ -123,7 +123,7 @@ export default {
 
 
 .section{
-	width: 375px;
+	width: 100%;
 	height: 115px;
 	background: white;
 	display: flex;

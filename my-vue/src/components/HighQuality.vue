@@ -7,10 +7,9 @@
 		</div>
 		
 		
-		<div class="" v-for="item in 10">
 			<div class="section recom">
 				<router-link to="/">
-					<img :src="goodlist[this.i]"/>
+					<img :src="goodlist"/>
 				</router-link>
 			</div>
 			<div class="section has-recommend">
@@ -32,7 +31,6 @@
 				    </div>
 				</div>
 			</div>
-		</div>		
 		
 		
 		
@@ -46,24 +44,26 @@ export default{
 	name : "reman",
 	data : function(){
 		return {
-			i:0,
-			j:0,
+//			i:0,
+//			j:0,
 			goodlist:[],
 			swiper_slider:[]
 		}
 	},
 	mounted : function(){
-	    axios.get('/v3/ad/homepage?connect_id=&type=0&lonlat=116.25153%2C40.11623&ad_code=110114&tab_id=')
+	    axios.get('v3/ad/homepage?connect_id=&type=0&lonlat=116.25153,40.11623&ad_code=110114&tab_id=')
 		  .then((response)=>{
 		    console.log(response);
-		    for(this.i=12;this.i<21;this.i++){
-		    	this.goodlist.push(response.data.data.banner.mainBanners[this.i].content[0].image)
-		    	this.i++;
-		    }
-		    for(this.j=13;this.j<21;this.j++){
-		    	this.swiper_slider.push(response.data.data.banner.mainBanners[this.j].content)
-		    	this.j++;
-		    }
+		    this.goodlist = (response.data.data.banner.mainBanners[11].content[0].image)
+		    this.swiper_slider = (response.data.data.banner.mainBanners[12].content)
+//		    for(this.i=12;this.i<21;this.i++){
+//		    	this.goodlist.push(response.data.data.banner.mainBanners[this.i].content[0].image)
+//		    	this.i++;
+//		    }
+//		    for(this.j=13;this.j<21;this.j++){
+//		    	this.swiper_slider.push(response.data.data.banner.mainBanners[this.j].content)
+//		    	this.j++;
+//		    }
 		    this.$nextTick(function(){
 		    	var swiper = new Swiper('.swiper-container', {
 		     	 	slidesPerView: 3,
